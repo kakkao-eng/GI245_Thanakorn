@@ -30,10 +30,4 @@ public class CharAnimation : MonoBehaviour
     {
         ChooseAnimation(character);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
