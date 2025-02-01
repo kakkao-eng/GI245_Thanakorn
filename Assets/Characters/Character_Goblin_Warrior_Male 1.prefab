@@ -457,6 +457,8 @@ GameObject:
   - component: {fileID: 9505110}
   - component: {fileID: 5111019109776805595}
   - component: {fileID: 9146575602080416720}
+  - component: {fileID: -5759292389072784137}
+  - component: {fileID: -3967977985553750827}
   m_Layer: 0
   m_Name: Character_Goblin_Warrior_Male 1
   m_TagString: Untagged
@@ -563,6 +565,31 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-5759292389072784137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d8362ac63c78d469353e05ab19fa65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+--- !u!114 &-3967977985553750827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12b156b51344894bada8557f2cb7804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &114958
 GameObject:
   m_ObjectHideFlags: 0
