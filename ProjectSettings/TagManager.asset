@@ -4,20 +4,20 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - 'NPC '
   - 'Hero '
-  - 'Enemy '
-  - 'Ground '
+  - NPC
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 'Ground '
+  - Ground
   - Water
   - UI
-  - 'Character '
-  - 'Building '
-  - 'Item '
+  - Character
+  - Building
+  - Item
   - 
   - 
   - 

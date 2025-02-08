@@ -30,6 +30,32 @@ public abstract class Character : MonoBehaviour
     public void SetState(CharState s)
     {
         state = s;
+
+        if (state == CharState.Idle)
+        {
+            navAgent.isStopped = true;
+            navAgent.ResetPath();
+        }
     }
-    
+
+    public void WalkToPosition(Vector3 dest)
+    {
+        if (navAgent != null)
+        {
+            navAgent.SetDestination(dest);
+            navAgent.isStopped = false;
+            SetState(CharState.Walk);
+        }
+    }
+
+
+    protected void WalkUpdate()
+    {
+        float distance = Vector3.Distance(transform.position, navAgent.destination);
+        Debug.Log(distance);
+        if (distance <= navAgent.stoppingDistance)
+            SetState(CharState.Idle);
+    }
+
+
 }
