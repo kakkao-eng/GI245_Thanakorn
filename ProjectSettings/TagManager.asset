@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - 'Hero '
   - NPC
   - Enemy
   - Ground
+  - Hero
   layers:
   - Default
   - TransparentFX

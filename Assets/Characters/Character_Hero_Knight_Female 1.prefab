@@ -1313,6 +1313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  ringSelection: {fileID: 4512846608152577371}
 --- !u!114 &2725789534976492753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4956,6 +4957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle Select 3
       objectReference: {fileID: 0}
+    - target: {fileID: 689876796715574038, guid: 76b112f4152cd9b499b7a8dfff8bfef9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2867166371249400384, guid: 76b112f4152cd9b499b7a8dfff8bfef9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -5036,6 +5041,11 @@ PrefabInstance:
 --- !u!4 &1222742422711356429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2867166371249400384, guid: 76b112f4152cd9b499b7a8dfff8bfef9, type: 3}
+  m_PrefabInstance: {fileID: 3977300102586230349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4512846608152577371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 689876796715574038, guid: 76b112f4152cd9b499b7a8dfff8bfef9, type: 3}
   m_PrefabInstance: {fileID: 3977300102586230349}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6354490749451490742
