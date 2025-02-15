@@ -2845,6 +2845,7 @@ GameObject:
   - component: {fileID: 4676192458563773197}
   - component: {fileID: -8959641245037691163}
   - component: {fileID: 9165055948830842645}
+  - component: {fileID: 3242745835388793057}
   m_Layer: 0
   m_Name: Character_Hero_Knight_Male 1
   m_TagString: Untagged
@@ -2964,6 +2965,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b9ee25a8bb88c42aec341d2c5c4b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curHP: 10
+  curCharTarget: {fileID: 0}
+  attackRange: 2
+  attackDamage: 3
+  attackCoolDown: 2
+  attackTimer: 0
+  findingRange: 20
   state: 0
   ringSelection: {fileID: 1107475453941500243}
 --- !u!114 &9165055948830842645
@@ -2978,6 +2986,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b156b51344894bada8557f2cb7804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3242745835388793057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e531342009dd8943adbf87936fb721d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEnemy: {fileID: 0}
 --- !u!1 &165894
 GameObject:
   m_ObjectHideFlags: 0
