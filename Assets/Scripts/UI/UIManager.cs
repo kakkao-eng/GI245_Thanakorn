@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class UIManager : MonoBehaviour
     {
         get { return selectionBox; }
     }
+
+    [SerializeField] private Toggle togglePauseUnpause;
 
     public static UIManager instance;
 
@@ -26,6 +29,31 @@ public class UIManager : MonoBehaviour
             {
                 ai.enabled = isOn;
             }
+        }
+    }
+
+    public void Selectall()
+    {
+        foreach (Character member in PartyManager.instance.Members)
+        {
+            if (member.CurHP > 0)
+            {
+                member.ToggleRingSelection(true);
+                PartyManager.instance.SelectChars.Add(member);
+            }
+        }
+    }
+
+    public void PauseUnpause(bool isOn)
+    {
+        Time.timeScale = isOn ? 0 : 1;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            togglePauseUnpause.isOn = !togglePauseUnpause.isOn;
         }
     }
 }
