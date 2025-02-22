@@ -1,6 +1,5 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RightClick : MonoBehaviour
 {
@@ -8,26 +7,29 @@ public class RightClick : MonoBehaviour
 
     private Camera cam;
     public LayerMask layerMask;
-    private LeftClick leftClick;
+    
     public static RightClick instance;
+    
 
-    void Awake()
-    {
-        leftClick = GetComponent<LeftClick>();
-    }
-
-    private void Start()
+    void Start()
     {
         instance = this;
         cam = Camera. main;
         layerMask = LayerMask. GetMask("Ground", "Character", "Building");
     }
 
-    private void CommandToWalk(RaycastHit hit, Character c)
+    private void CommandToWalk(RaycastHit hit, List<Character> heroes)
     {
-        if (c != null)
-            c.WalkToPosition(hit.point);
+        foreach (Character h in heroes)
+        {
+            if (h != null)
+            {
+                h.WalkToPosition(hit.point);
+            }
+        }
+        
         CreateVFX(hit.point, VFXManager.instance.DoubleRingMarker);
+       
     }
 
 
@@ -41,10 +43,10 @@ public class RightClick : MonoBehaviour
             switch (hit.collider.tag)
             {
                 case "Ground":
-                    CommandToWalk(hit, leftClick.CurChar);
+                    CommandToWalk(hit, PartyManager.instance.SelectChars);
                     break;
                 case "Enemy":
-                    CommandToAttack(hit,leftClick.CurChar);
+                    CommandToAttack(hit,PartyManager.instance.SelectChars);
                     break;
             }
         }
@@ -71,14 +73,15 @@ public class RightClick : MonoBehaviour
         }
     }
 
-    private void CommandToAttack(RaycastHit hit, Character c)
+    private void CommandToAttack(RaycastHit hit, List<Character> heroes)
     {
-        if (c == null)
-            return;
         Character target = hit.collider.GetComponent<Character>();
         Debug.Log("Attack: " + target);
-        if (target != null)
-            c.ToAttackCharacter(target);
+
+        foreach (Character h in heroes)
+        {
+            h.ToAttackCharacter(target);
+        }
     }
 
 
