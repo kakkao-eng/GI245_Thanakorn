@@ -3841,6 +3841,9 @@ MonoBehaviour:
   magicVFX:
   - {fileID: 1236643204216662, guid: 0c72ab59ede093345ad87090d18b6a1f, type: 3}
   - {fileID: 1722081097931586, guid: c07e07e498b7ab44cb3cd0a9499ea08a, type: 3}
+  magicData:
+  - {fileID: 11400000, guid: 84fb1a4564a252d4aa0963e34e2103fd, type: 2}
+  - {fileID: 11400000, guid: 6b03838df73c5ee4b8f95440eb7af1da, type: 2}
 --- !u!114 &722856588
 MonoBehaviour:
   m_ObjectHideFlags: 0
