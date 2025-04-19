@@ -13,7 +13,7 @@ public class VFXManager : MonoBehaviour
     public GameObject[] MagicVFX { get { return magicVFX; } }
 
     [SerializeField] private MagicData[] magicData; 
-    public MagicData[] MagicDatas { get { return magicData; } }
+    public MagicData[] MagicData { get { return magicData; } }
 
 
     public static VFXManager instance;

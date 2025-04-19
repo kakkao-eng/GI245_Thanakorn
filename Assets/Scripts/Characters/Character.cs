@@ -57,8 +57,28 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected bool isMagicMode = false;
         public bool IsMagicMode { get { return isMagicMode; } set { isMagicMode = value; } }
         
+        [Header("Inventory")] 
+        
+        [SerializeField] 
+        protected Item[] inventoryItems; 
+        public Item[] InventoryItems 
+        { get { return inventoryItems; } set { inventoryItems = value; }} 
+        [SerializeField] 
+        protected Item mainWeapon; 
+        public Item MainWeapon { get { return mainWeapon; } set { mainWeapon = value; } } 
+        [SerializeField] 
+        protected Item shield;
+
+        public Item Shield
+        {
+            get { return shield; }
+            set { shield = value; }
+        }
+
+
         protected VFXManager vfxManager;
         protected UIManager uiManager;
+        protected InventoryManager invManager;
 
     
 
@@ -228,10 +248,13 @@ public abstract class Character : MonoBehaviour
         return false;
     }
 
-    public void CharInit(VFXManager vfxM , UIManager uiM)
+    public void CharInit(VFXManager vfxM , UIManager uiM , InventoryManager invM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
+        invManager = invM;
+        
+        inventoryItems = new Item[InventoryManager.MAXSLOT];
     }
 
     protected void MagicCastLogic(Magic magic)
@@ -307,6 +330,8 @@ public abstract class Character : MonoBehaviour
             MagicCast(curMagicCast);
         }
     }
+
+
 
 
 

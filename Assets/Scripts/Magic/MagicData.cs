@@ -4,7 +4,8 @@ using UnityEngine;
 public class MagicData : ScriptableObject
 {
     public int id;
-    public string maicName;
+    public string magicName;
+    public Sprite icon;
     public float range;
     public int power;
     public float loadTime;
