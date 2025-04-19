@@ -10,6 +10,10 @@ public class Magic
     [SerializeField]
     private string name;
     public string Name { get { return name; } }
+    
+    [SerializeField]
+    private Sprite icon;
+    public Sprite Icon { get { return icon; } }
 
     [SerializeField] private Sprite icon;
     public Sprite Icon { get { return icon; } }
@@ -41,12 +45,19 @@ public class Magic
     public Magic(MagicData data)
     {
         id = data.id;
+<<<<<<< HEAD
         name = data.magicName;
+=======
+        name = data.name;
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
         icon = data.icon;
         range = data.range;
         power = data.power;
         loadTime = data.loadTime;
+<<<<<<< HEAD
         shootTime = data.shootTime;
+=======
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
         loadId = data.loadId;
         shootId = data.shootId;
     }

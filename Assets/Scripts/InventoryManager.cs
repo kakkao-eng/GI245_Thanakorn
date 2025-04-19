@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+<<<<<<< HEAD
     
     [SerializeField] 
     private GameObject[] itemPrefabs; 
@@ -19,6 +20,31 @@ public class InventoryManager : MonoBehaviour
     void Awake() 
     { 
         instance = this; 
+=======
+    [SerializeField]
+    private GameObject[] itemPrefabs;
+    public GameObject[] ItemPrefabs
+    {
+        get { return itemPrefabs; }
+        set { itemPrefabs = value; }
+    }
+
+    [SerializeField]
+    private ItemData[] itemData;
+    public ItemData[] ItemData
+    {
+        get { return itemData; }
+        set { itemData = value; }
+    }
+
+    public const int MAXSLOT = 16;
+
+    public static InventoryManager instance;
+
+    void Awake()
+    {
+        instance = this;
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
     }
 
     public bool AddItem(Character character, int id)
@@ -36,6 +62,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Inventory Full");
         return false;
     }
+<<<<<<< HEAD
     
     public void SaveItemInBag(int index, Item item) 
     { 
@@ -53,3 +80,7 @@ public class InventoryManager : MonoBehaviour
 
 
 }
+=======
+}
+
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e

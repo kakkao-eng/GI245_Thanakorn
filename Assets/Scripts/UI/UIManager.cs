@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform selectionBox;
+
     public RectTransform SelectionBox
     {
         get { return selectionBox; }
@@ -15,14 +16,26 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private Toggle[] toggleMagic;
-    public Toggle[] ToggleMagic { get { return toggleMagic; } }
+
+    public Toggle[] ToggleMagic
+    {
+        get { return toggleMagic; }
+    }
 
     [SerializeField] private int curToggleMagicID = -1;
 
     [SerializeField] private GameObject blackImage;
+<<<<<<< HEAD
     [SerializeField] private GameObject inventoryPanel;
 
     [SerializeField] private GameObject itemUIPrefab;
+=======
+
+    [SerializeField] private GameObject inventoryPanel;
+
+    [SerializeField] private GameObject itemUIPrefab;
+
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
     [SerializeField] private GameObject[] slots;
 
     private void Awake()
@@ -81,7 +94,7 @@ public class UIManager : MonoBehaviour
             toggleMagic[i].GetComponentInChildren<Text>().text = hero.MagicSkills[i].Name;
             toggleMagic[i].targetGraphic.GetComponent<Image>().sprite = hero.MagicSkills[i].Icon;
         }
- 
+
     }
 
     public void SelectMagicSkill(int i)
@@ -121,6 +134,7 @@ public class UIManager : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+<<<<<<< HEAD
     }
     
     
@@ -158,5 +172,27 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Initslots();
+=======
+
+    }
+
+    public void ShowInventory()
+    {
+        if (PartyManager.instance.SelectChars.Count <= 0)
+            return;
+
+        Character hero = PartyManager.instance.SelectChars[0];
+
+        for (int i = 0; i < hero.InventoryItems.Length; i++)
+        {
+            if (hero.InventoryItems[i] != null)
+            {
+                GameObject itemObj = Instantiate(itemUIPrefab, slots[i].transform);
+                itemObj.GetComponent<Image>().sprite = hero.InventoryItems[i].Icon;
+            }
+        }
+
+        
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
     }
 }

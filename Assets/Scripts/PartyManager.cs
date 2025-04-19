@@ -27,6 +27,7 @@ public class PartyManager : MonoBehaviour
             c.CharInit(VFXManager.instance , UIManager.instance , InventoryManager.instance);
         }
         SelectSingleHero(0);
+<<<<<<< HEAD
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
         
@@ -35,6 +36,18 @@ public class PartyManager : MonoBehaviour
         InventoryManager.instance.AddItem(members [1], 0);//Health Potion 
         InventoryManager.instance.AddItem(members[1], 1);//Sword 
         InventoryManager.instance.AddItem(members [1], 2);//Shield
+=======
+        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
+        
+        InventoryManager.instance. AddItem(members[0], 0);//Health Potion 
+        InventoryManager.instance.AddItem(members[0], 1);//Sword 
+        
+        InventoryManager.instance.AddItem(members [1], 0);//Health Potion 
+        InventoryManager.instance.AddItem(members [1], 1);//Sword 
+        InventoryManager.instance. AddItem(members [1], 2);//Shield
+        
+>>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
         
         UIManager.instance.ShowMagicToggles();
     }
