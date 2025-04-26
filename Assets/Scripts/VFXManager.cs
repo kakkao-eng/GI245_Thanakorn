@@ -11,10 +11,14 @@ public class VFXManager : MonoBehaviour
     
     [SerializeField] private GameObject[] magicVFX;
     public GameObject[] MagicVFX { get { return magicVFX; } }
+<<<<<<< HEAD
 
     [SerializeField] private MagicData[] magicData; 
     public MagicData[] MagicData { get { return magicData; } }
 
+=======
+  
+>>>>>>> parent of 85ec371 (17.8)
 
     public static VFXManager instance;
 

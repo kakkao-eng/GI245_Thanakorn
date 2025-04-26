@@ -28,6 +28,7 @@ public class PartyManager : MonoBehaviour
         }
         SelectSingleHero(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
         
@@ -49,6 +50,10 @@ public class PartyManager : MonoBehaviour
         
 >>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
         
+=======
+        members[0].MagicSkills.Add(new Magic(0, "Power Glow" , 10f, 20, 3f, 1f, 2, 2));
+        members[1].MagicSkills.Add(new Magic(0, "Fire Ball" , 10f, 35, 3f, 4f, 0, 1));
+>>>>>>> parent of 85ec371 (17.8)
         UIManager.instance.ShowMagicToggles();
     }
 
