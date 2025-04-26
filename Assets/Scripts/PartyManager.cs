@@ -24,36 +24,11 @@ public class PartyManager : MonoBehaviour
     {
         foreach (Character c in members)
         {
-            c.CharInit(VFXManager.instance , UIManager.instance , InventoryManager.instance);
+            c.CharInit(VFXManager.instance , UIManager.instance);
         }
         SelectSingleHero(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[0]));
-        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        
-        InventoryManager.instance.AddItem(members[0], 0);//Health Potion 
-        InventoryManager.instance.AddItem(members[0], 1);//Sword 
-        InventoryManager.instance.AddItem(members [1], 0);//Health Potion 
-        InventoryManager.instance.AddItem(members[1], 1);//Sword 
-        InventoryManager.instance.AddItem(members [1], 2);//Shield
-=======
-        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
-        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
-        
-        InventoryManager.instance. AddItem(members[0], 0);//Health Potion 
-        InventoryManager.instance.AddItem(members[0], 1);//Sword 
-        
-        InventoryManager.instance.AddItem(members [1], 0);//Health Potion 
-        InventoryManager.instance.AddItem(members [1], 1);//Sword 
-        InventoryManager.instance. AddItem(members [1], 2);//Shield
-        
->>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
-        
-=======
-        members[0].MagicSkills.Add(new Magic(0, "Power Glow" , 10f, 20, 3f, 1f, 2, 2));
-        members[1].MagicSkills.Add(new Magic(0, "Fire Ball" , 10f, 35, 3f, 4f, 0, 1));
->>>>>>> parent of 85ec371 (17.8)
+        members[0].MagicSkills.Add(new Magic(0, "Power Glow" , 10f, 20, 3f, 1f, 0, 1));
+        members[1].MagicSkills.Add(new Magic(1, "Fire Ball" , 10f, 35, 3f, 1f, 0, 1));
         UIManager.instance.ShowMagicToggles();
     }
 

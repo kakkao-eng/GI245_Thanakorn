@@ -57,55 +57,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected bool isMagicMode = false;
         public bool IsMagicMode { get { return isMagicMode; } set { isMagicMode = value; } }
         
-<<<<<<< HEAD
-        [Header("Inventory")] 
-        
-        [SerializeField] 
-        protected Item[] inventoryItems; 
-        public Item[] InventoryItems 
-        { get { return inventoryItems; } set { inventoryItems = value; }} 
-        [SerializeField] 
-        protected Item mainWeapon; 
-        public Item MainWeapon { get { return mainWeapon; } set { mainWeapon = value; } } 
-        [SerializeField] 
-        protected Item shield;
-
-=======
-        [Header("Inventory")]
-
-        [SerializeField]
-        protected Item[] inventoryItems;
-        public Item[] InventoryItems
-        {
-            get { return inventoryItems; }
-            set { inventoryItems = value; }
-        }
-
-        [SerializeField]
-        protected Item mainWeapon;
-        public Item MainWeapon
-        {
-            get { return mainWeapon; }
-            set { mainWeapon = value; }
-        }
-
-        [SerializeField]
-        protected Item shield;
->>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
-        public Item Shield
-        {
-            get { return shield; }
-            set { shield = value; }
-        }
-<<<<<<< HEAD
-
-
-=======
-        
->>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
         protected VFXManager vfxManager;
         protected UIManager uiManager;
-        protected InventoryManager invManager;
 
     
 
@@ -275,18 +228,10 @@ public abstract class Character : MonoBehaviour
         return false;
     }
 
-    public void CharInit(VFXManager vfxM , UIManager uiM , InventoryManager invM)
+    public void CharInit(VFXManager vfxM , UIManager uiM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
-<<<<<<< HEAD
-        invManager = invM;
-        
-        inventoryItems = new Item[InventoryManager.MAXSLOT];
-=======
-        
-        inventoryItems = new Item[16];
->>>>>>> 97cf407b5fca2a66d99ee60a63b2640cb85d351e
     }
 
     protected void MagicCastLogic(Magic magic)
@@ -362,8 +307,6 @@ public abstract class Character : MonoBehaviour
             MagicCast(curMagicCast);
         }
     }
-
-
 
 
 
