@@ -5,7 +5,6 @@ public class MagicData : ScriptableObject
 {
     public int id;
     public string maicName;
-    public Sprite icon;
     public float range;
     public int power;
     public float loadTime;

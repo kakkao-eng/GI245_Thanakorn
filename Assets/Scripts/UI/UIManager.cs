@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform selectionBox;
-
     public RectTransform SelectionBox
     {
         get { return selectionBox; }
@@ -16,21 +15,9 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private Toggle[] toggleMagic;
-
-    public Toggle[] ToggleMagic
-    {
-        get { return toggleMagic; }
-    }
+    public Toggle[] ToggleMagic { get { return toggleMagic; } }
 
     [SerializeField] private int curToggleMagicID = -1;
-
-    [SerializeField] private GameObject blackImage;
-
-    [SerializeField] private GameObject inventoryPanel;
-
-    [SerializeField] private GameObject itemUIPrefab;
-
-    [SerializeField] private GameObject[] slots;
 
     private void Awake()
     {
@@ -86,9 +73,8 @@ public class UIManager : MonoBehaviour
             toggleMagic[i].interactable = true;
             toggleMagic[i].isOn = false;
             toggleMagic[i].GetComponentInChildren<Text>().text = hero.MagicSkills[i].Name;
-            toggleMagic[i].targetGraphic.GetComponent<Image>().sprite = hero.MagicSkills[i].Icon;
         }
-
+ 
     }
 
     public void SelectMagicSkill(int i)
@@ -101,52 +87,5 @@ public class UIManager : MonoBehaviour
     {
         toggleMagic[curToggleMagicID].isOn = flag;
     }
-
-    public void ToggleInventoryPanel()
-    {
-        if (!inventoryPanel.activeInHierarchy)
-        {
-            inventoryPanel.SetActive(true);
-            blackImage.SetActive(true);
-            ShowInventory();
-        }
-        else
-        {
-            inventoryPanel.SetActive(false);
-            blackImage.SetActive(false);
-            ClearInventory();
-        }
-    }
-
-    public void ClearInventory()
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].transform.childCount > 0)
-            {
-                Transform child = slots[i].transform.GetChild(0);
-                Destroy(child.gameObject);
-            }
-        }
-
-    }
-
-    public void ShowInventory()
-    {
-        if (PartyManager.instance.SelectChars.Count <= 0)
-            return;
-
-        Character hero = PartyManager.instance.SelectChars[0];
-
-        for (int i = 0; i < hero.InventoryItems.Length; i++)
-        {
-            if (hero.InventoryItems[i] != null)
-            {
-                GameObject itemObj = Instantiate(itemUIPrefab, slots[i].transform);
-                itemObj.GetComponent<Image>().sprite = hero.InventoryItems[i].Icon;
-            }
-        }
-
-        
-    }
+    
 }

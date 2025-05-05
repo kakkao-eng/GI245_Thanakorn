@@ -10,10 +10,6 @@ public class Magic
     [SerializeField]
     private string name;
     public string Name { get { return name; } }
-    
-    [SerializeField]
-    private Sprite icon;
-    public Sprite Icon { get { return icon; } }
 
     [SerializeField] 
     private float range;
@@ -39,16 +35,15 @@ public class Magic
     private int shootId;
     public int ShootID { get { return shootId; } }
 
-    public Magic(MagicData data)
+    public Magic(int id, string name, float range, int power, float loadTime, float shootTime, int loadId, int shootId)
     {
-        id = data.id;
-        name = data.name;
-        icon = data.icon;
-        range = data.range;
-        power = data.power;
-        loadTime = data.loadTime;
-        loadId = data.loadId;
-        shootId = data.shootId;
+        this.id = id;
+        this.name = name;
+        this.range = range;
+        this.power = power;
+        this.loadTime = loadTime;
+        this.loadId = loadId;
+        this.shootId = shootId;
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
