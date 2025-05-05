@@ -9,15 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6717f04159e9dd4cb6e9976f90dbe9b, type: 3}
-  m_Name: 001_FireBall
+  m_Script: {fileID: 11500000, guid: 57c1ccf70efd3c14795c0e310a641428, type: 3}
+  m_Name: 002_ShieldA
   m_EditorClassIdentifier: 
-  id: 1
-  maicName: Fire Ball
-  icon: {fileID: 21300000, guid: 4d35c8722241b9745ba72a647c69802e, type: 3}
-  range: 10
-  power: 35
-  loadTime: 3
-  shootTime: 4
-  loadId: 0
-  shootId: 1
+  id: 2
+  itemName: ShieldA
+  type: 1
+  icon: {fileID: 21300000, guid: c2e571b9d573dd64fa379a5612009327, type: 3}
+  power: 15
