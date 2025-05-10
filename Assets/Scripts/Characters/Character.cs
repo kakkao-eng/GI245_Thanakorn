@@ -17,92 +17,131 @@ public enum CharState
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField]
-    protected int curHP = 10;
-    public int CurHP { get { return curHP; } }
-    [SerializeField]
-    protected Character curCharTarget;
+    [SerializeField] protected int curHP = 10;
+
+    public int CurHP
+    {
+        get { return curHP; }
+    }
+
+    [SerializeField] protected int maxHP = 100;
+
+    public int MaxHP
+    {
+        get { return maxHP; }
+    }
+
+    [SerializeField] protected Character curCharTarget;
+
     public Character CurCharTarget
     {
         get { return curCharTarget; }
         set { curCharTarget = value; }
     }
-    [SerializeField]
-    protected float attackRange = 2f;
+
+    [SerializeField] protected float attackRange = 2f;
+
     public float AttackRange
     {
         get { return attackRange; }
     }
 
     [SerializeField] protected int attackDamage = 3;
-    [SerializeField]
-    protected float attackCoolDown = 2f;
-    [SerializeField]
-    protected float attackTimer = 0f;
+    [SerializeField] protected float attackCoolDown = 2f;
+    [SerializeField] protected float attackTimer = 0f;
 
     [SerializeField] protected float findingRange = 20f;
+
     public float FindingRange
     {
         get { return findingRange; }
     }
-    
-    [SerializeField]
-    protected List<Magic> magicSkills = new List<Magic>();
-    public List<Magic> MagicSkills { get { return magicSkills; } set { magicSkills = value; } }
-    
-    [SerializeField]
-    protected Magic curMagicCast = null;
-    public Magic CurMagicCast { get { return curMagicCast; } set { curMagicCast = value; } }
+
+    [SerializeField] protected List<Magic> magicSkills = new List<Magic>();
+
+    public List<Magic> MagicSkills
+    {
+        get { return magicSkills; }
+        set { magicSkills = value; }
+    }
+
+    [SerializeField] protected Magic curMagicCast = null;
+
+    public Magic CurMagicCast
+    {
+        get { return curMagicCast; }
+        set { curMagicCast = value; }
+    }
 
     [SerializeField] protected bool isMagicMode = false;
-        public bool IsMagicMode { get { return isMagicMode; } set { isMagicMode = value; } }
-        
-        [Header("Inventory")]
 
-        [SerializeField]
-        protected Item[] inventoryItems;
-        public Item[] InventoryItems
-        {
-            get { return inventoryItems; }
-            set { inventoryItems = value; }
-        }
+    public bool IsMagicMode
+    {
+        get { return isMagicMode; }
+        set { isMagicMode = value; }
+    }
 
-        [SerializeField]
-        protected Item mainWeapon;
-        public Item MainWeapon
-        {
-            get { return mainWeapon; }
-            set { mainWeapon = value; }
-        }
+    [Header("Inventory")] [SerializeField] protected Item[] inventoryItems;
 
-        [SerializeField]
-        protected Item shield;
-        public Item Shield
-        {
-            get { return shield; }
-            set { shield = value; }
-        }
-        
-        protected VFXManager vfxManager;
-        protected UIManager uiManager;
+    public Item[] InventoryItems
+    {
+        get { return inventoryItems; }
+        set { inventoryItems = value; }
+    }
 
-    
+    [SerializeField] protected Item mainWeapon;
+
+    public Item MainWeapon
+    {
+        get { return mainWeapon; }
+        set { mainWeapon = value; }
+    }
+
+    [SerializeField] protected Item shield;
+
+    public Item Shield
+    {
+        get { return shield; }
+        set { shield = value; }
+    }
+
+    [SerializeField] protected Transform shieldHand;
+
+    [SerializeField] protected GameObject shieldObj;
+
+    [SerializeField] int defensePower = 0;
+
+
+    protected VFXManager vfxManager;
+    protected UIManager uiManager;
+    protected InventoryManager invManager;
+
+
 
     protected NavMeshAgent navAgent;
-    
+
     protected Animator anim;
-    public Animator Anim { get { return anim; } }
+
+    public Animator Anim
+    {
+        get { return anim; }
+    }
 
     [SerializeField] protected CharState state;
-    public CharState State { get { return state; }}
+
+    public CharState State
+    {
+        get { return state; }
+    }
 
     [SerializeField] protected GameObject ringSelection;
+
     public GameObject RingSelection
     {
         get { return ringSelection; }
     }
-    
-    
+
+
 
     public void ToggleRingSelection(bool flag)
     {
@@ -183,7 +222,7 @@ public abstract class Character : MonoBehaviour
     {
         transform.LookAt(curCharTarget.transform);
         anim.SetTrigger("Attack");
-        
+
         AttackLogic();
     }
 
@@ -195,8 +234,9 @@ public abstract class Character : MonoBehaviour
             SetState(CharState.Idle);
             return;
         }
+
         navAgent.isStopped = true;
-        
+
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackCoolDown)
         {
@@ -215,20 +255,25 @@ public abstract class Character : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
-    
+
     protected virtual void Die()
     {
         navAgent.isStopped = true;
         SetState(CharState.Die);
         anim.SetTrigger("Die");
+        invManager.SpawnDropInventory(inventoryItems, transform.position);
         StartCoroutine(DestroyObject());
     }
 
     public void ReceiveDamage(int damage)
     {
-        if (curHP <= 0 ||state == CharState.Die)
+        if (curHP <= 0 || state == CharState.Die)
             return;
-        curHP -= damage;
+        
+        int damageAfter = damage - defensePower; 
+        if (damageAfter < 0) damageAfter = 0; 
+        curHP -= damageAfter;
+        
         if (curHP <= 0)
         {
             curHP = 0;
@@ -254,12 +299,13 @@ public abstract class Character : MonoBehaviour
         return false;
     }
 
-    public void CharInit(VFXManager vfxM , UIManager uiM)
+    public void CharInit(VFXManager vfxM, UIManager uiM, InventoryManager invM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
-        
-        inventoryItems = new Item[16];
+        invManager = invM;
+
+        inventoryItems = new Item[InventoryManager.MAXSLOT];
     }
 
     protected void MagicCastLogic(Magic magic)
@@ -268,28 +314,28 @@ public abstract class Character : MonoBehaviour
 
         if (target != null)
             target.ReceiveDamage(magic.Power);
-        
+
     }
 
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
         {
-            vfxManager.ShootMagic(curMagicCast.ShootID, 
+            vfxManager.ShootMagic(curMagicCast.ShootID,
                 transform.position,
                 curCharTarget.transform.position,
                 curMagicCast.ShootTime);
-            
+
             yield return new WaitForSeconds(curMagicCast.ShootTime);
-            
+
             MagicCastLogic(curMagicCast);
             isMagicMode = false;
-            
+
             SetState(CharState.Idle);
             if (uiManager != null)
                 uiManager.IsOnCurToggleMagic(false);
-            
-            
+
+
         }
     }
 
@@ -300,9 +346,9 @@ public abstract class Character : MonoBehaviour
             vfxManager.LoadMagic(curMagicCast.LoadID,
                 transform.position,
                 curMagicCast.LoadTime);
-            
+
             yield return new WaitForSeconds(curMagicCast.LoadTime);
-            
+
             StartCoroutine(ShootMagicCast(curMagicCast));
         }
     }
@@ -322,22 +368,48 @@ public abstract class Character : MonoBehaviour
             SetState(CharState.Idle);
             return;
         }
-        
+
         navAgent.SetDestination(curCharTarget.transform.position);
-        
-        float distance = Vector3.Distance(transform.position,curCharTarget.transform.position);
+
+        float distance = Vector3.Distance(transform.position, curCharTarget.transform.position);
 
         if (distance <= curMagicCast.Range)
         {
             navAgent.isStopped = true;
             SetState(CharState.MagicCast);
-            
+
             MagicCast(curMagicCast);
         }
     }
 
+    public void Recover(int n)
+    {
+        curHP += n;
+        if (curHP > maxHP)
+            curHP = maxHP;
+    }
 
 
+    public void EquipShield(Item item)
+    {
+        shieldObj = Instantiate(invManager.ItemPrefabs[item.PrefabID], shieldHand);
+        shieldObj.transform.localPosition = new Vector3(-8.5f, -4f, 3f);
+        shieldObj.transform.Rotate(-90f, 0f, 180f, Space.Self);
 
+        defensePower += item.Power;
+        shield = item;
+    }
+
+    public void UnEquipShield()
+    {
+        if (shield != null)
+        {
+            defensePower -= shield.Power;
+            shield = null;
+            Destroy(shieldObj);
+        }
+
+
+    }
 
 }

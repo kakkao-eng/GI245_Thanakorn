@@ -24,8 +24,10 @@ public class PartyManager : MonoBehaviour
     {
         foreach (Character c in members)
         {
-            c.CharInit(VFXManager.instance , UIManager.instance);
+            c.CharInit(VFXManager.instance,
+                UIManager.instance, InventoryManager.instance);
         }
+
         SelectSingleHero(0);
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
@@ -35,7 +37,8 @@ public class PartyManager : MonoBehaviour
         
         InventoryManager.instance.AddItem(members [1], 0);//Health Potion 
         InventoryManager.instance.AddItem(members [1], 1);//Sword 
-        InventoryManager.instance. AddItem(members [1], 2);//Shield
+        InventoryManager.instance. AddItem(members [1], 2);//Shield A
+        InventoryManager.instance. AddItem(members [1], 3);//Shield A
         
         
         UIManager.instance.ShowMagicToggles();
