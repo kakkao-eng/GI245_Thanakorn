@@ -28,12 +28,12 @@ public class LeftClick : MonoBehaviour
 
     private void SelectCharacter(RaycastHit hit)
     {
+        ClearEverything();
         Character hero = hit.collider.GetComponent<Character>();
-        Debug.Log("Selected Char: " + hit.collider.gameObject);
-        
-        PartyManager.instance.SelectChars.Add(hero);
-        hero.ToggleRingSelection(true);
-        UIManager.instance.ShowMagicToggles();
+        //ebug.Log("Selected Char: " + hit.collider.gameObject);
+
+        int i = PartyManager.instance.FindIndexFromClass(hero);
+            UIManager.instance.ToggleAvatar[i].isOn = true; //Select first hero
 
     }
 
@@ -65,7 +65,7 @@ public class LeftClick : MonoBehaviour
             {
                 return;
             }
-            ClearEverything();
+            
         }
         if (Input.GetMouseButton(0))
         {
@@ -81,8 +81,10 @@ public class LeftClick : MonoBehaviour
 
     private void ClearRingSelection()
     {
-        foreach (Character h in PartyManager.instance.SelectChars)
-            h.ToggleRingSelection(false);    
+        foreach (Character t in PartyManager.instance.SelectChars)
+            t.ToggleRingSelection(false);  
+        ClearRingSelection();
+        PartyManager.instance.SelectChars.Clear();
     }
 
     private void ClearEverything()
