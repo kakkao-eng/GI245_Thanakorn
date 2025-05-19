@@ -14,6 +14,10 @@ public class PartyManager : MonoBehaviour
     private List<Character> selectChars = new List<Character>();
     public List<Character> SelectChars { get { return selectChars; } }
     public static PartyManager instance;
+    
+    [SerializeField] 
+    private List<Quest> questList = new List<Quest>(); 
+    public List<Quest> QuestList { get { return questList; } }
 
     void Awake()
     {
@@ -76,4 +80,6 @@ public class PartyManager : MonoBehaviour
         selectChars[0].CurMagicCast = selectChars[0].MagicSkills[i];
         
     }
+    
+
 }
