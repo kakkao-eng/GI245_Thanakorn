@@ -23,6 +23,7 @@ public abstract class Character : MonoBehaviour
     public int CurHP
     {
         get { return curHP; }
+        set { curHP = value; }
     }
 
     [SerializeField] protected int maxHP = 100;
@@ -51,6 +52,7 @@ public abstract class Character : MonoBehaviour
     public int AttackDamage
     {
         get { return attackDamage; }
+        set {attackDamage = value;}
     }
     [SerializeField] protected float attackCoolDown = 2f;
     [SerializeField] protected float attackTimer = 0f;
@@ -114,13 +116,14 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField] protected GameObject shieldObj;
 
-    [SerializeField] int defensePower = 0;
-    public int DefensePower { get { return defensePower; } }
+    [SerializeField] protected int defensePower = 0;
+    public int DefensePower { get { return defensePower; } set { defensePower = value; } }
 
 
     protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
+    protected PartyManager partyManager;
 
 
 
@@ -312,11 +315,12 @@ public abstract class Character : MonoBehaviour
         return false;
     }
 
-    public void CharInit(VFXManager vfxM, UIManager uiM, InventoryManager invM)
+    public void CharInit(VFXManager vfxM, UIManager uiM, InventoryManager invM, PartyManager partyM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
         invManager = invM;
+        partyManager = partyM;
 
         inventoryItems = new Item[InventoryManager.MAXSLOT];
     }

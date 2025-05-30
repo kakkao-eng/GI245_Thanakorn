@@ -16,6 +16,9 @@ public class Item
 {
     [SerializeField] private int id;
     public int ID { get { return id; } }
+
+    [SerializeField] private int normalPrice;
+    public int NormalPrice { get { return normalPrice; } }
     
     [SerializeField] private string itemName;
     public string ItemName { get { return itemName; } }
@@ -40,6 +43,7 @@ public class Item
         icon = data.icon;
         power = data.power;
         prefabID = data.prefabID;
+        normalPrice = data.normalPrice;
     }
 
 }
